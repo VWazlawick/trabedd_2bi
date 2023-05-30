@@ -18,8 +18,6 @@ public class TrabEddMain {
             for(int i=0;i<lc.getListaContas().length;i++){
                 if(lc.getListaContas()[i]!=null){
                     System.out.println(lc.getListaContas()[i].getNmTitutal());
-                }else{
-                    System.out.println("aaa");
                 }
         }
         } catch (Exception e) {

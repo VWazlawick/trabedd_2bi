@@ -15,6 +15,7 @@ public class ListaContas {
         for(int i=0; i<listaContas.length;i++){
             if(listaContas[i]==null){
                 listaContas[i]=conta;
+                i=listaContas.length;
             }
         }
     }
