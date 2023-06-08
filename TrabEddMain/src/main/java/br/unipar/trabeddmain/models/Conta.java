@@ -2,14 +2,14 @@ package br.unipar.trabeddmain.models;
 
 public class Conta {
     private int idConta;
-    private String nrConta;
+    private int nrConta;
     private String nmTitutal;
     private double sldInicial;
 
     public Conta() {
     }
 
-    public Conta(int idConta, String nrConta, String nmTitutal, double sldInicial) {
+    public Conta(int idConta, int nrConta, String nmTitutal, double sldInicial) {
         this.idConta = idConta;
         this.nrConta = nrConta;
         this.nmTitutal = nmTitutal;
@@ -24,11 +24,11 @@ public class Conta {
         this.idConta = idConta;
     }
 
-    public String getNrConta() {
+    public int getNrConta() {
         return nrConta;
     }
 
-    public void setNrConta(String nrConta) {
+    public void setNrConta(int nrConta) {
         this.nrConta = nrConta;
     }
 
