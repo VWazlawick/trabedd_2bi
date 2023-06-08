@@ -5,6 +5,7 @@ public class Conta {
     private int nrConta;
     private String nmTitutal;
     private double sldInicial;
+    private double[] movimentacoes = new double[10];
 
     public Conta() {
     }
@@ -48,10 +49,27 @@ public class Conta {
         this.sldInicial = sldInicial;
     }
 
+    public double[] getMovimentacoes() {
+        return movimentacoes;
+    }
+
+    public void setMovimentacoes(double movimentacao) {
+        for(int i=0;i<movimentacoes.length;i++){
+            if(movimentacoes[i]==0){
+                movimentacoes[i]=movimentacao;
+                break;
+            }
+        }
+    }
+
     @Override
     public String toString() {
-        return "Conta{" + "idConta=" + idConta + ", nrConta=" + nrConta + ", nmTitutal=" + nmTitutal + ", sldInicial=" + sldInicial + '}';
+        return "Conta{" + "idConta=" + idConta + ", nrConta=" + nrConta + ", nmTitutal=" + nmTitutal + ", sldInicial=" + sldInicial + ", movimentacoes=" + movimentacoes + '}';
     }
+    
+    
+
+      
 
     
 }

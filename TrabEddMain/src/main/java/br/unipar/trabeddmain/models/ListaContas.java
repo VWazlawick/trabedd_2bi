@@ -47,6 +47,38 @@ public class ListaContas {
             }
         }
     }
+    
+    public int pesquisaLinearNrConta(int pesquisa){
+        this.ordenacaoNumeroConta();
+        for(int i=0;i<listaContas.length;i++){
+            if(listaContas[i]!=null){
+                if(pesquisa==listaContas[i].getNrConta()){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public int pesquisaLinearNome(String nome){
+        this.ordenacaoNumeroConta();
+        for(int i=0;i<listaContas.length;i++){
+            if(listaContas[i]!=null){
+                if(nome.equals(listaContas[i].getNmTitutal())){
+                    return i;
+                }
+            }
+        }
+        return -1;
+    }
+    
+    public void deposito(double valor, int pos){
+        listaContas[pos].setMovimentacoes(valor);
+    }
+    
+    public void sacar(double valor, int pos){
+        listaContas[pos].setMovimentacoes(valor*(-1));
+    }
     @Override
     public String toString() {
         return "ListaContas{" + "listaContas=" + listaContas + '}';
