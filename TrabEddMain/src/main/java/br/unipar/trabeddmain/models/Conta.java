@@ -5,16 +5,17 @@ public class Conta {
     private int nrConta;
     private String nmTitutal;
     private double sldInicial;
-    private double[] movimentacoes = new double[10];
+    private double vlrMovimentacoes;
 
     public Conta() {
     }
 
-    public Conta(int idConta, int nrConta, String nmTitutal, double sldInicial) {
+    public Conta(int idConta, int nrConta, String nmTitutal, double sldInicial, double vlrMovimentacoes) {
         this.idConta = idConta;
         this.nrConta = nrConta;
         this.nmTitutal = nmTitutal;
         this.sldInicial = sldInicial;
+        this.vlrMovimentacoes = vlrMovimentacoes;
     }
 
     public int getIdConta() {
@@ -49,23 +50,20 @@ public class Conta {
         this.sldInicial = sldInicial;
     }
 
-    public double[] getMovimentacoes() {
-        return movimentacoes;
+    public double getVlrMovimentacoes() {
+        return vlrMovimentacoes;
     }
 
-    public void setMovimentacoes(double movimentacao) {
-        for(int i=0;i<movimentacoes.length;i++){
-            if(movimentacoes[i]==0){
-                movimentacoes[i]=movimentacao;
-                break;
-            }
-        }
+    public void setVlrMovimentacoes(double vlrMovimentacoes) {
+        this.vlrMovimentacoes = vlrMovimentacoes;
     }
 
     @Override
     public String toString() {
-        return "Conta{" + "idConta=" + idConta + ", nrConta=" + nrConta + ", nmTitutal=" + nmTitutal + ", sldInicial=" + sldInicial + ", movimentacoes=" + movimentacoes + '}';
+        return "Conta{" + "idConta=" + idConta + ", nrConta=" + nrConta + ", nmTitutal=" + nmTitutal + ", sldInicial=" + sldInicial + ", vlrMovimentacoes=" + vlrMovimentacoes + '}';
     }
+
+    
     
     
 

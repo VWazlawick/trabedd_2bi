@@ -1,5 +1,8 @@
 package br.unipar.trabeddmain.models;
 
+import br.unipar.trabeddmain.exceptions.ContaExistenteException;
+import java.util.List;
+
 public class ListaContas {
     
     private Conta[] listaContas = new Conta[10];
@@ -11,11 +14,15 @@ public class ListaContas {
         return listaContas;
     }
 
-    public void setListaContas(Conta conta) {
+    public void setListaContas(Conta conta) throws ContaExistenteException{
         for(int i=0; i<listaContas.length;i++){
-            if(listaContas[i]==null){
+            if(listaContas[i]==null){  
                 listaContas[i]=conta;
                 break;
+            }else{
+                if(conta.getNrConta()==listaContas[i].getNrConta()){
+                    throw new ContaExistenteException();
+                }
             }
         }
     }
@@ -72,12 +79,50 @@ public class ListaContas {
         return -1;
     }
     
+//    public void deposito(double valor, int pos){
+//        listaContas[pos].setMovimentacoes(valor);
+//    }
+//    
+//    public void sacar(double valor, int pos){
+//        listaContas[pos].setMovimentacoes(valor*(-1));
+//    }
     public void deposito(double valor, int pos){
-        listaContas[pos].setMovimentacoes(valor);
+        listaContas[pos].setVlrMovimentacoes(listaContas[pos].getSldInicial() + valor);
     }
     
     public void sacar(double valor, int pos){
-        listaContas[pos].setMovimentacoes(valor*(-1));
+        listaContas[pos].setVlrMovimentacoes(listaContas[pos].getVlrMovimentacoes()-valor);
+    }
+    
+    public double calcularSaldo(int i ){
+        ordenacaoNumeroConta();
+        if(listaContas.length==0){
+            return 0;
+        }else{
+            if(listaContas[i]!=null){
+                double saldoAtual = listaContas[i].getSldInicial() + listaContas[i].getVlrMovimentacoes();
+                double saldoRestante = calcularSaldo(i+1);
+                return saldoAtual + saldoRestante;
+            }
+            else{
+                return 0;
+            }
+        }        
+    } 
+    
+    public String verificarNegativo(String msg, int i){
+        ordenacaoNumeroConta();
+        if(listaContas.length<=i){
+            return msg;
+        }else{
+            if(listaContas[i]!=null){
+                double saldoAtual = listaContas[i].getSldInicial() + listaContas[i].getVlrMovimentacoes();
+                if(saldoAtual<0){
+                    msg += listaContas[i].getNmTitutal() + " " + listaContas[i].getNrConta() + " " + saldoAtual + "\n";
+                }                
+            }
+            return verificarNegativo(msg, i+1);            
+        }
     }
     @Override
     public String toString() {

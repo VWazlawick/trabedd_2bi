@@ -10,9 +10,10 @@ public class TrabEddMain {
 
     public static void main(String[] args) {
         boolean ont = true;
+        ListaContas lc = new ListaContas();
         while(ont==true){
             try {
-                ListaContas lc = new ListaContas();
+                
 
                 String input = JOptionPane.showInputDialog("O que deseja fazer:\n"
                         + "Cadastrar Nova Conta (1)\n"
@@ -26,7 +27,7 @@ public class TrabEddMain {
                     case "1":
                         Conta c1 = new Conta();
                         for(int i=0;i<lc.getListaContas().length;i++){
-                            if(lc.getListaContas()==null){
+                            if(lc.getListaContas()[i]==null){
                                 c1.setIdConta(i+1);
                             }
                         }
@@ -39,8 +40,10 @@ public class TrabEddMain {
                         c1.setSldInicial(Double.parseDouble(inputDados));
 
                         lc.setListaContas(c1);
+                        System.out.println(lc.getListaContas()[0].getNmTitutal());
                         break;
                     case "2":
+                        System.out.println(lc.getListaContas()[0].getNmTitutal());
                         String opcao = JOptionPane.showInputDialog("Deseja ordenar pelo Número da Conta (1) ou"
                                 + " Saldo da Conta (2)?");
                         switch (opcao) {
@@ -49,7 +52,7 @@ public class TrabEddMain {
                                 String msg="";
                                 for(int i=0;i<lc.getListaContas().length;i++){
                                     if(lc.getListaContas()[i]!=null){
-                                        msg = lc.getListaContas()[i].toString() + "\n";
+                                        msg += lc.getListaContas()[i].toString() + "\n";
                                     }
                                 }
                                 JOptionPane.showMessageDialog(null, msg);
@@ -59,7 +62,7 @@ public class TrabEddMain {
                                 msg="";
                                 for(int i=0;i<lc.getListaContas().length;i++){
                                     if(lc.getListaContas()[i]!=null){
-                                        msg = lc.getListaContas()[i].toString() + "\n";
+                                        msg += lc.getListaContas()[i].toString() + "\n";
                                     }
                                 }
                                 JOptionPane.showMessageDialog(null, msg);
@@ -127,10 +130,10 @@ public class TrabEddMain {
                         }
                         break; 
                     case "5":
-
+                        JOptionPane.showMessageDialog(null, "O saldo de todas as contas é: R$" + lc.calcularSaldo(0));
                         break;
                     case "6":
-
+                        JOptionPane.showMessageDialog(null, lc.verificarNegativo("", 0));
                         break;
                     case "7":
                         ont=false;                            
@@ -140,11 +143,11 @@ public class TrabEddMain {
                 }
                 
         
-            for(int i=0;i<lc.getListaContas().length;i++){
-                    if(lc.getListaContas()[i]!=null){
-                        JOptionPane.showMessageDialog(null, lc.getListaContas()[i].toString());
-                    }
-                }
+//            for(int i=0;i<lc.getListaContas().length;i++){
+//                    if(lc.getListaContas()[i]!=null){
+//                        JOptionPane.showMessageDialog(null, lc.getListaContas()[i].toString());
+//                    }
+//                }
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
